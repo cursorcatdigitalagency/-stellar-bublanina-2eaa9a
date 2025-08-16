@@ -1,0 +1,16 @@
+# Netlify configuration for React app built with esbuild
+# Ensures correct build command, publish directory, and SPA fallback routing.
+
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  # Pin Node to a recent LTS; esbuild and modern React expect >=18
+  NODE_VERSION = "20"
+
+# SPA fallback (safe even with HashRouter and useful if switching to BrowserRouter later)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
